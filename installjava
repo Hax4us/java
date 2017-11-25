@@ -1,0 +1,48 @@
+#!/data/data/com.termux/files/usr/bin/bash
+clear
+sleep 0
+echo "           \033[33m----------------------------\033[0m"
+echo "               \033[36mLokesh:Hax4Us:€|eViL"
+echo "           \033[33m----------------------------\033[0m"
+echo
+echo "          \033[36mJava Installation Script v1.0"
+echo "       \033[33m ----------------------------------"
+echo
+arch=`dpkg --print-architecture`
+
+echo "Do you want to continue (y|Y/n|N)"
+	read yesorno
+		if [ $yesorno = 'y' -o $yesorno = 'Y' ] ; then
+			echo "Package size is around 70mb before extraction"
+echo
+		else
+			echo "\033[35mbye bye ... :D\033[0m"
+			exit
+fi
+			if [ $arch = "aarch64" -o $arch = "arm64" ] ; then
+
+			echo "\033[32m[*] Now wait until jdk-8 is installing ...🕛🕧\033[0m"
+			echo
+
+wget https://github.com/Hax4us/java/releases/download/v8/jdk8_aarch64.tar.gz
+
+echo
+echo "\033[32m[*] Moving jdk into system ...\033[0m"
+mv jdk8_aarch64.tar.gz $PREFIX/share
+
+echo "\033[32m[*] Extracting ...\033[0m"
+cd $PREFIX/share
+tar -xhf jdk8_aarch64.tar.gz
+
+echo "\033[32m[*] Moving wrapper scripts for java 8\033[0m"
+mv bin/* $PREFIX/bin
+
+echo "\033[34mHappy java :D\033[0m"
+
+		elif [ $arch = "armhf" -o $arch = "armv7l" ]; then
+				echo "armhf"
+				elif [ $arch = "arm" ]; then
+					echo "arm"
+			else
+				echo "\033[31munknown architecture :( plz contact @hax4us for more info\033[0m"
+fi
