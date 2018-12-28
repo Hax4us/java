@@ -38,5 +38,11 @@ else
 	ee "\e[34m[*] Moving Java wrapper scripts to bin..."
 	mv bin/* $PREFIX/bin
 	echo
+	ee "\e[34m[*] Cleaning up temporary files..."
+	rm -rf $HOME/installjava
+	rm -rf $PREFIX/share/jdk8_${archname}.tar.gz
+	rm -rf $PREFIX/share/bin
+	echo
 	ee "\e[32mJava was successfully installed!\e[39m"
+	echo
 fi
