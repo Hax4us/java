@@ -1,5 +1,5 @@
 #!/data/data/com.termux/files/usr/bin/bash
-clear
+echo
 shopt -s expand_aliases
 alias ee='echo -e'
 ee "\e[34mThis script will install Java in Termux."
@@ -26,7 +26,7 @@ else
 		ee "\e[31mERROR: Unknown architecture."; exit ;;
 	esac
 	ee "\e[34m[*] Downloading JDK-8 (~70Mb) for ${archname}..."
-	wget https://github.com/Hax4us/java/releases/download/v8/jdk8_${archname}.tar.gz
+	wget https://github.com/Hax4us/java/releases/download/v8/jdk8_${archname}.tar.gz -q
 	echo
 	ee "\e[34m[*] Moving JDK to system..."
 	mv jdk8_${archname}.tar.gz $PREFIX/share
@@ -38,5 +38,5 @@ else
 	ee "\e[34m[*] Moving Java wrapper scripts to bin..."
 	mv bin/* $PREFIX/bin
 	echo
-	ee "\e[32mJava was successfully installed!"
+	ee "\e[32mJava was successfully installed!\e[39m"
 fi
