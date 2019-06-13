@@ -14,15 +14,15 @@ then
 else
 	case `dpkg --print-architecture` in
 	aarch64)
-		archname="aarch64" ;;
+		archname="aarch64"; tag="v8" ;;
 	arm64)
-		archname="aarch64" ;;
+		archname="aarch64"; tag="v8" ;;
 	armhf)
-		archname="arm" ;;
+		archname="arm"; tag="v8-151" ;;
 	armv7l)
-		archname="arm" ;;
+		archname="arm"; tag="v8-151" ;;
 	arm)
-		archname="arm" ;;
+		archname="arm"; tag="v8-151" ;;
 	*)
 		ee "\e[91mERROR: Unknown architecture."; echo; exit ;;
 	esac
