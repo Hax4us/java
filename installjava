@@ -27,7 +27,7 @@ else
 		ee "\e[91mERROR: Unknown architecture."; echo; exit ;;
 	esac
 	ee "\e[32m[*] \e[34mDownloading JDK-8 (~70Mb) for ${archname}..."
-	wget https://github.com/Hax4us/java/releases/download/v8/jdk8_${archname}.tar.gz -q
+	wget https://github.com/Hax4us/java/releases/download/${tag}/jdk8_${archname}.tar.gz -q
 	ee "\e[32m[*] \e[34mMoving JDK to system..."
 	mv jdk8_${archname}.tar.gz $PREFIX/share
 	ee "\e[32m[*] \e[34mExtracting JDK..."
