@@ -1,9 +1,10 @@
-# Java for termux 
-# Steps
-1.mv java/openjdk/java /data/data/com.termux/files/usr/bin
+# Termux Java
+### Information
+This script will install Java in Termux.</br>
+Libraries compiled by <a href="https://github.com/Hax4us">Hax4us</a>, script written by <a href="https://github.com/Hax4us">Hax4us</a> and <a href="https://github.com/MasterDevX">MasterDevX</a>.
 
-2.Now you can execute java
+### How to use
+To install Java, open Termux and execute the following command:</br>
+```pkg install wget && wget https://raw.githubusercontent.com/MasterDevX/java/master/installjava && bash installjava```
 
-# Hello I am Lokesh (devil - admin of hax4us channel & website )
-
-# This is a try to use java easily in termux plz dont put my hardwork into dustbean by copying my work :D thnx
+After that you can run Java using ```java``` command.
