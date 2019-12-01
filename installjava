@@ -4,10 +4,10 @@ sleep 0
 shopt -s expand_aliases
 alias ee='echo -e'
 ee "           \033[33m----------------------------\033[0m"
-ee"               \033[36mLokesh:Hax4Us:€|eViL"
-ee"           \033[33m----------------------------\033[0m"
+ee "               \033[36mLokesh:Hax4Us:€|eViL"
+ee "           \033[33m----------------------------\033[0m"
 echo
-ee"          \033[36mJava Installation Script v1.0"
+ee "          \033[36mJava Installation Script v1.0"
 ee "       \033[33m ----------------------------------"
 echo
 ee " \033[31mDon't take credits :D (Shared libraries are compiled by me)"
