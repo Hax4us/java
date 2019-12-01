@@ -1,92 +1,38 @@
-#!/data/data/com.termux/files/usr/bin/bash
-clear
-sleep 0
-shopt -s expand_aliases
-alias ee='echo -e'
-ee "           \033[33m----------------------------\033[0m"
-ee "               \033[36mLokesh:Hax4Us:€|eViL"
-ee "           \033[33m----------------------------\033[0m"
-echo
-ee "          \033[36mJava Installation Script v1.0"
-ee "       \033[33m ----------------------------------"
-echo
-ee " \033[31mDon't take credits :D (Shared libraries are compiled by me)"
-ee "\033[33m ------------------------------------"
+#!/data/data/com.termux/files/usr/bin/sh
 
-arch=`dpkg --print-architecture`
+print_status() {
+    printf "[*] ${1}...\n"
+}
 
-echo "Do you want to continue (y|Y/n|N)"
-	read yesorno
-		if [ $yesorno = 'y' -o $yesorno = 'Y' ] ; then
-			echo "Package size is around 70mb before extraction"
-echo
-		else
-			ee "\033[35mbye bye ... :D\033[0m"
-			exit
-fi
-			if [ $arch = "aarch64" -o $arch = "arm64" ] ; then
+set_arch() {
+    case "$(uname -m)" in
+        aarch64|armv8l)
+            ARCH=aarch64
+            ;;
+        armv7l|arm)
+            ARCH=arm
+            ;;
+        *)
+            printf "[!] arch not supported yet\n"
+            exit 1
+            ;;
+    esac
+}
 
-			ee "\033[32m[*] Now wait until jdk-8 is installing ...🕛🕧\033[0m"
-			echo
+get_tar() {
+    wget -c https://github.com/Hax4us/java/releases/download/v8/jdk8_${ARCH}.tar.gz -O jdk8_$ARCH.tar.gz
+    tar -xf jdk8_$ARCH.tar.gz -C $PREFIX/share 
+    chmod +x $PREFIX/share/bin/*
+    mv $PREFIX/share/bin/* $PREFIX/bin
+}
 
-wget https://github.com/Hax4us/java/releases/download/v8/jdk8_aarch64.tar.gz
+cleanup() {
+    rm -f jdk8_${ARCH}.tar.gz
+    rm -rf $PREFIX/share/bin
+}
 
-echo
-ee "\033[32m[*] Moving jdk into system ...\033[0m"
-mv jdk8_aarch64.tar.gz $PREFIX/share
-
-ee "\033[32m[*] Extracting ...\033[0m"
-cd $PREFIX/share
-tar -xhf jdk8_aarch64.tar.gz
-
-ee "\033[32m[*] Moving wrapper scripts for java 8\033[0m"
-mv bin/* $PREFIX/bin
-
-ee "\033[34mHappy java :D\033[0m"
-
-		elif [ $arch = "armhf" -o $arch = "armv7l" ]; then
-				echo "armhf"
-				ee "\033[32m[*] Now wait until jdk-8 is installing ...🕛🕧\033[0m"
-			echo
-
-wget https://github.com/Hax4us/java/releases/download/v8-151/jdk8_arm.tar.gz
-
-echo
-ee "\033[32m[*] Moving jdk into system ...\033[0m"
-mv jdk8_arm.tar.gz $PREFIX/share
-echo
-ee "\033[32m[*] Extracting ...\033[0m"
-cd $PREFIX/share
-tar -xhf jdk8_arm.tar.gz
-echo
-ee "\033[32m[*] Moving wrapper scripts for java 8\033[0m"
-mv bin/* $PREFIX/bin
-rm -rf $PREFIX/share/bin
-echo
-ee "\033[34mHappy java :D\033[0m"
-
-
-				elif [ $arch = "arm" ]; then
-				ee "\033[32m[*] Now wait until jdk-8 is installing ...🕛🕧\033[0m"
-			echo
-
-wget https://github.com/Hax4us/java/releases/download/v8-151/jdk8_arm.tar.gz
-
-echo
-ee "\033[32m[*] Moving jdk into system ...\033[0m"
-mv jdk8_arm.tar.gz $PREFIX/share
-echo
-ee "\033[32m[*] Extracting ...\033[0m"
-cd $PREFIX/share
-tar -xhf jdk8_arm.tar.gz
-echo
-ee "\033[32m[*] Moving wrapper scripts for java 8\033[0m"
-mv bin/* $PREFIX/bin
-rm -rf $PREFIX/share/bin
-echo
-ee "\033[34mHappy java :D\033[0m"
-
-
-			else
-				ee "\033[31munknown architecture :( plz contact @hax4us for more info\033[0m"
-fi
+print_status "getting system info"
+set_arch
+print_status "getting tar file and setting all things"
+get_tar
+print_status "cleaning up"

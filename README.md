@@ -1,9 +1,4 @@
-# Java for termux 
+# Java for termux ( Only for Android < Oreo )
 # Steps
-1.mv java/openjdk/java /data/data/com.termux/files/usr/bin
-
-2.Now you can execute java
-
-# Hello I am Lokesh (devil - admin of hax4us channel & website )
-
-# This is a try to use java easily in termux plz dont put my hardwork into dustbean by copying my work :D thnx
+1. `sh installjava`
+2. Now you can execute java
