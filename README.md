@@ -2,7 +2,7 @@
 
 # Termux Java
 ### Information
-This script will install Java in Termux.</br>
+This script will install Java in Termux.<br />
 Libraries compiled by <a href="https://github.com/Hax4us">Hax4us</a>, script written by <a href="https://github.com/Hax4us">Hax4us</a> and <a href="https://github.com/MasterDevX">MasterDevX</a>.
 
 ### How to use
