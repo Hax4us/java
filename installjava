@@ -16,7 +16,7 @@ then
 	echo
 	exit
 else
-    #Checking, whether is someone trying to cheat and simplyfy their instalLation it on Linux (i.e. x86 (not listad, as you can see) machine)
+    #Checking, whether is someone trying to cheat and simplyfy their installation it on Linux (i.e. x86 (not listad, as you can see) machine) using this script, which have no reason to work.
 	case `dpkg --print-architecture` in
 	aarch64)
 		archname="aarch64"; tag="v8" ;;
@@ -43,8 +43,13 @@ else
 	cd $PREFIX/share
 	tar -xhf jdk8_${archname}.tar.gz
 
-	ee "\e[32m[*] \e[34mMoving Java wrapper scripts to bin..."
-	mv bin/* $PREFIX/bin
+    ee "\e[32m[*] \e[34mSeting-up %JAVA_HOME%..."
+	export JAVA_HOME=$PREFIX/share/jdk8
+    echo "export JAVA_HOME=$PREFIX/share/jdk8" >> $HOME/.profile
+
+	ee "\e[32m[*] \e[34mCoping Java wrapper scripts to bin..."
+	#I'm not 100% sure, but getting rid of bin contnent MAY cause some issues with %JAVA_HOME%, thus it's no longer moved - copied instead. Sorry to everyone short on storage.
+    cp bin/* $PREFIX/bin
 
 	ee "\e[32m[*] \e[34mCleaning up temporary files..."
 	rm -rf $HOME/installjava
