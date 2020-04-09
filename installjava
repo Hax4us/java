@@ -34,7 +34,7 @@ else
 	esac
 
     #Actual installation
-	ee "\e[32m[*] \e[34mDownloading JDK-8 (~70Mb) for ${archname}...  🕛This will take some time, so better make a coffee.🕧"
+	ee "\e[32m[*] \e[34mDownloading JDK-8 (~70Mb) for ${archname}...  🕛This will take some time, so better make a coffee.🕛"
 	wget https://github.com/Hax4us/java/releases/download/${tag}/jdk8_${archname}.tar.gz -q
 
 	ee "\e[32m[*] \e[34mMoving JDK to system..."
@@ -59,6 +59,6 @@ else
 
 	echo
 	ee "\e[32mJava was successfully installed!\e[39m"
-    echo "Enjoy your new, fresh Java :D (and a coffee, if you didn't drink it yet)"
+    echo "Enjoy your new, tasty Java :D (and a coffee, if you didn't drink it yet)"
 	echo
 fi
