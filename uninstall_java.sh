@@ -16,10 +16,10 @@ then
 	echo
 	exit
 else
-    #Actual uninstallation
+	#Actual uninstallation
 	ee "\e[32m[*] \e[34mUnseting %JAVA_HOME%..."
 	unset JAVA_HOME=$PREFIX/share/jdk8
-    echo "[WARNING!!!]: THIS SCRIPT WILL UNSET THE %JAVA_HOME% >>ONLY TEMPORARILY<<!!! I STRONGLY RECOMEND YOU TO REMOVE \"export JAVA_HOME=$PREFIX/share/jdk8\" line FROM YOUR \"$HOME/.profile\" (I haven't figured out how to that in Bash) SETUP FILE AS NOT DOING THAT >>WILL<< CAUSE PROBLEMS IN SOME APPS!!!"
+	echo "[WARNING!!!]: THIS SCRIPT WILL UNSET THE %JAVA_HOME% >>ONLY TEMPORARILY<<!!! I STRONGLY RECOMEND YOU TO REMOVE \"export JAVA_HOME=$PREFIX/share/jdk8\" line FROM YOUR \"$HOME/.profile\" (I haven't figured out how to that in Bash) SETUP FILE AS NOT DOING THAT >>WILL<< CAUSE PROBLEMS IN SOME APPS!!!"
 
 	ee "\e[32m[*] \e[34mRemoving Java..."
 	rm -drf $PREFIX/share/jdk8
