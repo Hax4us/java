@@ -1,0 +1,6 @@
+To install Java, open Termux and execute the following command:
+pkg install wget && wget https://raw.githubusercontent.com/MasterDevX/java/master/installjava && bash installjava
+
+Eventually, run wget https://raw.githubusercontent.com/MasterDevX/java/master/installjava && bash installjava to install Java if you arleady have wget installed.
+
+Or just bash installjava if you have the script arleady downloaded for some reason.
