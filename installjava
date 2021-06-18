@@ -1,7 +1,12 @@
-#!/data/data/com.termux/files/usr/bin/sh
+#!/usr/bin/env sh
+
+if ! hash wget > /dev/null
+then
+    apt install wget -y
+fi
 
 print_status() {
-    printf "[*] ${1}...\n"
+    printf "(>) ${1}...\n"
 }
 
 set_arch() {
@@ -13,17 +18,30 @@ set_arch() {
             ARCH=arm
             ;;
         *)
-            printf "[!] arch not supported yet\n"
+            printf "(!) Your device architecture not supported yet.\n"
             exit 1
             ;;
     esac
 }
 
 get_tar() {
-    wget -c https://github.com/Hax4us/java/releases/download/v8/jdk8_${ARCH}.tar.gz -O jdk8_$ARCH.tar.gz
+    wget -q --show-progress -c https://github.com/Hax4us/java/releases/download/v8/jdk8_${ARCH}.tar.gz -O jdk8_$ARCH.tar.gz
     tar -xf jdk8_$ARCH.tar.gz -C $PREFIX/share 
     chmod +x $PREFIX/share/bin/*
-    mv $PREFIX/share/bin/* $PREFIX/bin
+}
+
+get_java()
+{
+cat <<- CONF > $PREFIX/bin/java
+#!/usr/bin/bash
+
+unset LD_PRELOAD
+export JAVA_HOME="$PREFIX/share/jdk8"
+
+export LIB_DIR="\$PREFIX/share/glib"
+export LD_LIBRARY_PATH="\$LIB_DIR"
+exec proot -0 \$JAVA_HOME/bin/java "\$@"
+CONF
 }
 
 cleanup() {
@@ -31,8 +49,11 @@ cleanup() {
     rm -rf $PREFIX/share/bin
 }
 
-print_status "getting system info"
 set_arch
-print_status "getting tar file and setting all things"
+print_status "Getting system architecture"
 get_tar
-print_status "cleaning up"
+print_status "Extracting tar files to specific directory"
+print_status "Setting up java program for execution"
+get_java
+print_status "Cleaning up unwanted files"
+cleanup
