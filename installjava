@@ -5,6 +5,11 @@ then
     apt install wget -y
 fi
 
+if ! hash proot > /dev/null
+then
+    apt install proot -y
+fi
+
 print_status() {
     printf "(>) ${1}...\n"
 }
@@ -42,6 +47,21 @@ export LIB_DIR="\$PREFIX/share/glib"
 export LD_LIBRARY_PATH="\$LIB_DIR"
 exec proot -0 \$JAVA_HOME/bin/java "\$@"
 CONF
+chmod 777 $PREFIX/bin/java
+
+
+cat <<- CONF > $PREFIX/bin/javac
+#!/usr/bin/bash
+
+unset LD_PRELOAD
+export JAVA_HOME="$PREFIX/share/jdk8"
+
+export CLASSPATH=".:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar"
+export LIB_DIR="\$PREFIX/share/glib"
+export LD_LIBRARY_PATH="\$LIB_DIR"
+exec proot -0 \$JAVA_HOME/bin/javac "\$@"
+CONF
+chmod 777 $PREFIX/bin/javac
 }
 
 cleanup() {
